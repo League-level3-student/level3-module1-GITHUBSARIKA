@@ -6,11 +6,17 @@ public class _01_IntroToArrayLists {
 	public static void main(String[] args) {
 		//1. Create an array list of Strings
 		//   Don't forget to import the ArrayList class
-
+		ArrayList<String> food = new ArrayList<String>();
 		//2. Add five Strings to your list
-		
+		food.add("Taco");
+		food.add("Ramen");
+		food.add("Sushi");
+		food.add("Nachos");
+		food.add("Pizza");
 		//3. Print all the Strings using a standard for-loop
-		
+		for (int i = 0; i < food.size(); i++) {
+			
+		}
 		
 		//4. Print all the Strings using a for-each loop
 		
