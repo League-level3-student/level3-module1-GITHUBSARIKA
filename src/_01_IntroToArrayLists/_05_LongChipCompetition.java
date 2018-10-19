@@ -25,9 +25,10 @@ public class _05_LongChipCompetition {
 		ArrayList<Chip> longchip=b.getChips();
 		
 		double largeChip=longchip.get(0).getLength();
-		for (int j = 0; j < longchip.size();j++) {
-			if(longchip.get(i).getLength()>largeChip) {
-				largeChip=longchip.get(i).getLength();
+		for (int j = 1; j < longchip.size();j++) {
+			
+			if(longchip.get(j).getLength()>largeChip) {
+				largeChip=longchip.get(j).getLength();
 				winner=b.getName();
 			}
 		}
