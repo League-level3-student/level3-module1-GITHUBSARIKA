@@ -56,16 +56,22 @@ public class _06_IPodShuffle implements ActionListener{
 		// TODO Auto-generated method stub
 		JButton buttonPressed = (JButton) e.getSource();
 
+		
+		
 		if(buttonPressed==button) {
-			//Song song=new Song("demo.mp3");
-			  //  song.play();
-			Random random=new Random();
-			Integer intt=random.nextInt(0);
+			for (int i = 0; i < songShuffle.size(); i++) {
+			Song ss=songShuffle.get(i);
+			ss.stop();
+		}
+
 			
-				
+			Random random=new Random();
+			Integer intt=random.nextInt(songShuffle.size());
+			Song songrandom=songShuffle.get(intt);
+			songrandom.play();
+			
+								
 		}
 		
 		
-		
-	}
-}
+}}
