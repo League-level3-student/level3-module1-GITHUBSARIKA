@@ -1,5 +1,6 @@
 package _02_Integer_Stack;
 
+
 public class IntegerStack {
 	//1. create a private array of integers
 	private int[] integers;
@@ -45,12 +46,8 @@ public class IntegerStack {
 	//5. Complete the clear method to set the
 	//   member array to a new array of length 0
 	public void clear() {
-		int[] integerssame=new int[0];
-		for (int i = 0; i < integerssame.length; i++) {
-			integerssame[i]=integers[i];
-			integers=integerssame;
-		}
-	}
+		integers=new int[0];
+			}
 	
 	//6. Complete the size method to return 
 	//   the length of the member array
