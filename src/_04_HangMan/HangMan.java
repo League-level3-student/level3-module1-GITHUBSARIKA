@@ -14,14 +14,14 @@ public class HangMan implements KeyListener {
 	JFrame frame = new JFrame();
 	JPanel panel = new JPanel();
 	JLabel label = new JLabel();
-	
+
 	String wordTrack;
 	String displayWord;
 
 	public static void main(String[] args) {
 		HangMan hangman = new HangMan();
 	}
-	
+
 	public void createWordList() {
 		String amountOfLetters = JOptionPane.showInputDialog("Please type in a number below.");
 		int numwords = Integer.parseInt(amountOfLetters);
@@ -34,47 +34,61 @@ public class HangMan implements KeyListener {
 
 		}
 	}
+
 	public void window() {
 		frame.add(panel);
 		panel.add(label);
 		frame.pack();
 		frame.setVisible(true);
+		frame.addKeyListener(this);
 	}
-	
+
 	public void showNewWord() {
-		wordTrack=words.pop();
-		for (int i = 0; i < ; i++) {
-			
+		displayWord = "";
+		wordTrack = words.pop();
+		for (int i = 0; i < wordTrack.length(); i++) {
+			displayWord += "_";
+
 		}
+		label.setText(displayWord);
+
 	}
 
 	public HangMan() {
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
+		window();
+		createWordList();
+		showNewWord();
+
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
+		char character = e.getKeyChar();
+		String hello="";
+		for (int i = 0; i < wordTrack.length(); i++) {
+			if (character == wordTrack.charAt(i)) {
+				hello+=character;
+			}else {
+				displayWord.
+				hello+="_";
+			}
+		}
+		displayWord=hello;
+		label.setText(displayWord);
 		
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
