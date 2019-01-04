@@ -17,6 +17,8 @@ public class HangMan implements KeyListener {
 
 	String wordTrack;
 	String displayWord;
+	int lives;
+	
 
 	public static void main(String[] args) {
 		HangMan hangman = new HangMan();
@@ -46,11 +48,13 @@ public class HangMan implements KeyListener {
 	public void showNewWord() {
 		displayWord = "";
 		wordTrack = words.pop();
+		System.out.println(wordTrack);
 		for (int i = 0; i < wordTrack.length(); i++) {
 			displayWord += "_";
 
 		}
 		label.setText(displayWord);
+		lives=5;
 
 	}
 
@@ -72,23 +76,35 @@ public class HangMan implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		char character = e.getKeyChar();
+		boolean found=false;
 		String hello="";
+		
 		for (int i = 0; i < wordTrack.length(); i++) {
 			if (character == wordTrack.charAt(i)) {
 				hello+=character;
+				found=true;
+				
 			}else {
-				displayWord.
-				hello+="_";
+				hello+=displayWord.charAt(i);
+				found=false;
+				
+			}
+			if(lives==0) {
+				lives--;
+				JOptionPane.showMessageDialog(null, "Haha!!!! You lose!!!!!");
 			}
 		}
+		
 		displayWord=hello;
 		label.setText(displayWord);
 		
 	}
+	
+	
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 
-	}
-}
+	}}
+
