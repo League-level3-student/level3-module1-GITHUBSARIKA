@@ -18,7 +18,6 @@ public class HangMan implements KeyListener {
 	String wordTrack;
 	String displayWord;
 	int lives;
-	
 
 	public static void main(String[] args) {
 		HangMan hangman = new HangMan();
@@ -54,7 +53,7 @@ public class HangMan implements KeyListener {
 
 		}
 		label.setText(displayWord);
-		lives=5;
+		lives = 10;
 
 	}
 
@@ -76,35 +75,56 @@ public class HangMan implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		char character = e.getKeyChar();
-		boolean found=false;
-		String hello="";
-		
+		boolean found = false;
+		String hello = "";
+
 		for (int i = 0; i < wordTrack.length(); i++) {
 			if (character == wordTrack.charAt(i)) {
-				hello+=character;
-				found=true;
-				
-			}else {
-				hello+=displayWord.charAt(i);
-				found=false;
-				
+				hello += character;
+				found = true;
+
+			} else {
+				hello += displayWord.charAt(i);
+
 			}
-			if(lives==0) {
-				lives--;
-				JOptionPane.showMessageDialog(null, "Haha!!!! You lose!!!!!");
-			}
+
 		}
-		
-		displayWord=hello;
+		if (found == false) {
+			lives--;
+		}
+
+		displayWord = hello;
 		label.setText(displayWord);
-		
+		lives();
+
 	}
-	
-	
+
+	void lives() {
+		String reply = "";
+		if (lives <= 0) {
+			JOptionPane.showMessageDialog(null, "Haha!!! You lose!");
+			String w = words.pop();
+			wordTrack = w;
+		} else {
+			String x = words.pop();
+			wordTrack = x;
+		}
+		if (words.isEmpty()) {
+			reply = JOptionPane.showInputDialog("Would you like to play again?");
+
+		}
+		if (reply.equals("yes")) {
+			lives = 10;
+			createWordList();
+			window();
+			showNewWord();
+		}
+
+	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 
-	}}
-
+	}
+}
