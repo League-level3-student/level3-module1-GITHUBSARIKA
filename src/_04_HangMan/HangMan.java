@@ -24,8 +24,8 @@ public class HangMan implements KeyListener {
 	}
 
 	public void createWordList() {
-		String amountOfLetters = JOptionPane.showInputDialog("Please type in a number below.");
-		int numwords = Integer.parseInt(amountOfLetters);
+		String rounds = JOptionPane.showInputDialog("Please type in a number below.");
+		int numwords = Integer.parseInt(rounds);
 		for (int i = 0; i < numwords; i++) {
 			String dictionary = Utilities.readRandomLineFromFile("dictionary.txt");
 			if (!words.contains(dictionary)) {
@@ -54,6 +54,8 @@ public class HangMan implements KeyListener {
 		}
 		label.setText(displayWord);
 		lives = 10;
+		frame.setSize(0,  0);
+		frame.pack();
 
 	}
 
@@ -62,6 +64,7 @@ public class HangMan implements KeyListener {
 		window();
 		createWordList();
 		showNewWord();
+		lives();
 
 	}
 
@@ -77,6 +80,8 @@ public class HangMan implements KeyListener {
 		char character = e.getKeyChar();
 		boolean found = false;
 		String hello = "";
+		System.out.println(wordTrack.length());
+		System.out.println(displayWord.length());
 
 		for (int i = 0; i < wordTrack.length(); i++) {
 			if (character == wordTrack.charAt(i)) {
@@ -91,11 +96,25 @@ public class HangMan implements KeyListener {
 		}
 		if (found == false) {
 			lives--;
+			
 		}
 
 		displayWord = hello;
 		label.setText(displayWord);
 		lives();
+		if (displayWord.equals(wordTrack)) {
+			
+			if(words.isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Wou win!!:)");
+				JOptionPane.showInputDialog("Would you like to play again??");
+				
+			}else {
+			showNewWord();
+			}
+
+		}
+		
+		
 
 	}
 
@@ -103,25 +122,26 @@ public class HangMan implements KeyListener {
 		String reply = "";
 		if (lives <= 0) {
 			JOptionPane.showMessageDialog(null, "Haha!!! You lose!");
-			String w = words.pop();
-			wordTrack = w;
-		} else {
-			String x = words.pop();
-			wordTrack = x;
-		}
-		if (words.isEmpty()) {
-			reply = JOptionPane.showInputDialog("Would you like to play again?");
+			JOptionPane.showInputDialog("Would you like to play again??");
+			if (words.isEmpty()) {
+				reply = JOptionPane.showInputDialog("Would you like to play again?");
+				// do code to restart if they say yes
+				if (reply.equals("yes")) {
+					lives = 10;
+					createWordList();
+					window();
+					showNewWord();
+					
+				}
+			} else {
 
-		}
-		if (reply.equals("yes")) {
-			lives = 10;
-			createWordList();
-			window();
-			showNewWord();
+				String w = words.pop();
+				wordTrack = w;
+			}
 		}
 
 	}
-
+	
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
