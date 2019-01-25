@@ -47,7 +47,6 @@ public class HangMan implements KeyListener {
 	public void showNewWord() {
 		displayWord = "";
 		wordTrack = words.pop();
-		System.out.println(wordTrack);
 		for (int i = 0; i < wordTrack.length(); i++) {
 			displayWord += "_";
 
@@ -80,8 +79,7 @@ public class HangMan implements KeyListener {
 		char character = e.getKeyChar();
 		boolean found = false;
 		String hello = "";
-		System.out.println(wordTrack.length());
-		System.out.println(displayWord.length());
+		
 
 		for (int i = 0; i < wordTrack.length(); i++) {
 			if (character == wordTrack.charAt(i)) {
@@ -106,8 +104,19 @@ public class HangMan implements KeyListener {
 			
 			if(words.isEmpty()) {
 				JOptionPane.showMessageDialog(null, "Wou win!!:)");
-				JOptionPane.showInputDialog("Would you like to play again??");
 				
+				String reply = JOptionPane.showInputDialog("Would you like to play again?");
+				// do code to restart if they say yes
+				if (reply.equals("yes")) {
+					
+					lives = 10;
+					displayWord="_";
+					createWordList();
+					showNewWord();
+					
+				}else {
+					System.exit(0);
+				}
 			}else {
 			showNewWord();
 			}
@@ -122,22 +131,29 @@ public class HangMan implements KeyListener {
 		String reply = "";
 		if (lives <= 0) {
 			JOptionPane.showMessageDialog(null, "Haha!!! You lose!");
-			JOptionPane.showInputDialog("Would you like to play again??");
+			reply= JOptionPane.showInputDialog("Would you like to play again??");
 			if (words.isEmpty()) {
+				
 				reply = JOptionPane.showInputDialog("Would you like to play again?");
 				// do code to restart if they say yes
 				if (reply.equals("yes")) {
+					System.out.println("hio");
 					lives = 10;
+					displayWord="_";
 					createWordList();
-					window();
 					showNewWord();
 					
+				}else {
+					System.exit(0);
 				}
 			} else {
 
 				String w = words.pop();
 				wordTrack = w;
 			}
+			
+			
+			
 		}
 
 	}
