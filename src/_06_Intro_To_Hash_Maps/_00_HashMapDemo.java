@@ -27,6 +27,6 @@ public class _00_HashMapDemo {
 			System.out.println(i);
 		}
 		
-		System.out.println(Math.sqrt(3));
+		
 	}
 }
