@@ -70,19 +70,54 @@ public class _02_LogSearch implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(buttonEntry==e.getSource()) {
-			String num=JOptionPane.showInputDialog("Enter and ID number.");
+			String num=JOptionPane.showInputDialog("Enter an ID number.");
 			int idnum=Integer.parseInt(num);
 			String name= JOptionPane.showInputDialog("Enter a name.");
 			peopleinfo.put(idnum, name);
 		}
 		if(buttonID==e.getSource()) {
+			boolean entry=false;
 			String numm=JOptionPane.showInputDialog("Enter an ID number.");
 			int id=Integer.parseInt(numm);
 			for(Integer idd: peopleinfo.keySet()) {
 				if(id==idd) {
-					System.out.println(peopleinfo.get(idd));
+					JOptionPane.showMessageDialog(null,peopleinfo.get(idd ));
+					entry=true;
 				}
 			}
+			if(entry==false) {
+				JOptionPane.showMessageDialog(null, "This entry does not exist.");
+				
+			}
+		}
+		if(buttonList==e.getSource()) {
+			String list="";
+			for(Integer id: peopleinfo.keySet()) {
+				
+				 list+="ID:";
+				list+=id;
+				list+=" Name ";
+                list+=peopleinfo.get(id) + "\n";
+               
+				
+			
+			}
+			 JOptionPane.showMessageDialog(null, list);
+		}
+		if(buttonRemove==e.getSource()) {
+			String r=JOptionPane.showInputDialog("Type in an ID number.");
+			boolean reemove=false;
+			int remove=Integer.parseInt(r);
+			peopleinfo.get(remove);
+			if(peopleinfo.keySet().contains(remove)) {
+				peopleinfo.remove(remove);
+				reemove=true;
+			}
+			if(reemove==false) {
+				JOptionPane.showMessageDialog(null, "This entry does not exist.");
+			}
+			
+			
 		}
 	}
 	
