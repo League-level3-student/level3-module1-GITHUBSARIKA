@@ -9,9 +9,14 @@ public class Checkpointthree {
 		words.put("what", "tahw");
 		words.put("hello", "olleh");
 		words.put("taco", "ocat");
-		String list="";
-		for(int i:words.keySet())
-		System.out.println(words);
+		String list = "";
+		for (String i : words.keySet()) {
+			System.out.println(i + " " + words.get(i));
+			System.out.println();
+		}
+		for (String i : words.keySet()) {
+
+		}
 
 	}
 }
